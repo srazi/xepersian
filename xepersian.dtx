@@ -5708,6 +5708,25 @@ Persian typesetting in XeLaTeX]
 \typeout{\@xepersian@info}
 \edef\xepersian@everyjob{\the\everyjob}
 \everyjob{\xepersian@everyjob\typeout{\@xepersian@info}}
+\edef\@bidi@strip@v@xepersianversion{\expandafter\@gobble\xepersianversion}
+\newcommand*{\IfxepersianPackageVersionLater}[1]{%
+  \ifdim\@bidi@strip@v@xepersianversion pt > #1 pt %
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand*{\IfxepersianPackageVersionBefore}[1]{%
+  \ifdim\@bidi@strip@v@xepersianversion pt < #1 pt %
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand*{\IfxepersianPackageVersion}[1]{%
+  \ifdim\@bidi@strip@v@xepersianversion pt = #1 pt %
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}  
 \def\prq{«}
 \def\plq{»}
 \def\xepersian@cmds@temp#1{%
