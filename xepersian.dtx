@@ -5949,9 +5949,17 @@ Persian typesetting in XeLaTeX]
   \fi
   \if@twoside
     \ifodd\count\z@ \let\@thehead\@oddhead \let\@thefoot\@oddfoot
+       \if@RTLmain
+          \let\@themargin\evensidemargin
+        \else
+          \let\@themargin\oddsidemargin
+        \fi
+    \else \let\@thehead\@evenhead \let\@thefoot\@evenfoot 
+       \if@RTLmain
          \let\@themargin\oddsidemargin
-    \else \let\@thehead\@evenhead
-       \let\@thefoot\@evenfoot \let\@themargin\evensidemargin
+       \else
+         \let\@themargin\evensidemargin
+       \fi
     \fi
     \ifx\@thehead\@empty \let\@thehead\hfil \fi
     \ifx\@thefoot\@empty \let\@thefoot\hfil \fi
