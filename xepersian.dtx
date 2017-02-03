@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v17.2
+v17.3
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -28,7 +28,7 @@ a minimal working example showing the issue, and always choose the appropriate
 label for your query (i.e. if you are reporting any bugs, choose `Bug' label). 
 
 
-Current version release date: 2017/01/16
+Current version release date: 2017/02/04
 ______________
 Vafa Khalighi
 persian-tex@tug.org
@@ -272,7 +272,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 17.2}}
+%\large Documentation for \textcolor{blue!65!black}{version 17.3}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}}
 %\setcounter{page}{0}
@@ -283,7 +283,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 17.2}}
+%Documentation for \textcolor{blue!65!black}{version 17.3}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -338,7 +338,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v17.2, 2017/01/16
+%* v17.3, 2017/02/04
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2359,7 +2359,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{10207}
+%% \CheckSum{10291}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5676,8 +5676,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v17.2}
-\def\xepersiandate{2017/01/16}
+\def\xepersianversion{v17.3}
+\def\xepersiandate{2017/02/04}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
 \RequirePackage{fontspec}
@@ -5757,74 +5757,72 @@ Persian typesetting in XeLaTeX]
 \newfontscript{Parsi}{arab}
 \newfontlanguage{Parsi}{FAR}
 \ExplSyntaxOn
-\DeclareDocumentCommand \settextfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_settextfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_settextfont:nn
+\DeclareDocumentCommand \settextfont { O{} m O{} }
  {
-  \fontspec_set_family:cnn { g__fontspec_ \cs_to_str:N \persianfont _family } {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1} {#2}
-  \use:x
+  \fontspec_set_family:Nnn \g__xepersian_persianfont_family {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1,#3} {#2}
+  \tl_set_eq:NN \rmdefault \g__xepersian_persianfont_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \persianfont }
    {
-    \exp_not:N \DeclareRobustCommand \exp_not:N \persianfont
-     {
-      \exp_not:N \fontfamily { \use:c {g__fontspec_ \cs_to_str:N \persianfont _family} } 
-      \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
-      \exp_not:N \selectfont
-     }
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_persianfont_family }
+    \exp_not:N \selectfont
    }
-  \cs_set_eq:NN \rmdefault \l_fontspec_family_tl
+  }
+  \str_if_eq_x:nnT {\familydefault} {\rmdefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
+  \ignorespaces
  }
-\DeclareDocumentCommand \setlatintextfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setlatintextfont:nn  {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setlatintextfont:nn
+\DeclareDocumentCommand \setlatintextfont { O{} m O{} }
  {
-  \fontspec_set_family:cnn { g__fontspec_ \cs_to_str:N \latinfont _family } {Mapping=tex-text,#1} {#2}
-  \use:x
+  \fontspec_set_family:Nnn \g__xepersian_latinfont_family {Mapping=tex-text,#1,#3} {#2}
+  \tl_set_eq:NN \rmdefault \g__xepersian_latinfont_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \latinfont }
    {
-    \exp_not:N \DeclareRobustCommand \exp_not:N \latinfont
-     {
-      \exp_not:N \fontfamily { \use:c {g__fontspec_ \cs_to_str:N \latinfont _family} }
-      \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
-      \exp_not:N \selectfont
-     }
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_latinfont_family }
+    \exp_not:N \selectfont
    }
+  }
+  \str_if_eq_x:nnT {\familydefault} {\rmdefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
+  \normalfont
+  \ignorespaces
  }
-\cs_set_eq:NN \setlatinsansfont \setsansfont
-\cs_set_eq:NN \setlatinmonofont \setmonofont
-\DeclareDocumentCommand \defpersianfont { m o m }
- { \__fontspec_pass_args:nnn { \__xepersian_defpersianfont:Nnn #1 } {#2} {#3} }
 
-\cs_new:Nn \__xepersian_defpersianfont:Nnn
- {
-  \fontspec_set_family:cnn { g__fontspec_ \cs_to_str:N #1 _family } {Script=Parsi,Language=Parsi,Mapping=parsidigits,#2} {#3}
-  \use:x
-   {
-    \exp_not:N \DeclareRobustCommand \exp_not:N #1
-     {
-      \exp_not:N \fontfamily { \use:c {g__fontspec_ \cs_to_str:N #1 _family} }
-      \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
-      \exp_not:N \selectfont
-     }
-   }
- }
-\DeclareDocumentCommand \deflatinfont { m o m }
- { \__fontspec_pass_args:nnn { \__xepersian_deflatinfont:Nnn #1 } {#2} {#3} }
+\tl_set_eq:NN \setlatinsansfont \setsansfont
+\tl_set_eq:NN \setlatinmonofont \setmonofont
 
-\cs_new:Nn \__xepersian_deflatinfont:Nnn
+\DeclareDocumentCommand \defpersianfont { m O{} m O{} }
  {
-  \fontspec_set_family:cnn { g__fontspec_ \cs_to_str:N #1 _family } {Mapping=tex-text,#2} {#3}
+  \fontspec_set_family:cnn { g__xepersian_ \cs_to_str:N #1 _family } {Script=Parsi,Language=Parsi,Mapping=parsidigits,#2,#4} {#3}
   \use:x
    {
     \exp_not:N \DeclareRobustCommand \exp_not:N #1
      {
-      \exp_not:N \fontfamily { \use:c {g__fontspec_ \cs_to_str:N #1 _family} }
+      \exp_not:N \fontfamily { \use:c {g__xepersian_ \cs_to_str:N #1 _family} }
       \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
       \exp_not:N \selectfont
      }
    }
  }
+
+\DeclareDocumentCommand \deflatinfont { m O{} m O{} }
+ {
+  \fontspec_set_family:cnn { g__xepersian_ \cs_to_str:N #1 _family } {Mapping=tex-text,#2,#4} {#3}
+  \use:x
+   {
+    \exp_not:N \DeclareRobustCommand \exp_not:N #1
+     {
+      \exp_not:N \fontfamily { \use:c {g__xepersian_ \cs_to_str:N #1 _family} }
+      \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+      \exp_not:N \selectfont
+     }
+   }
+ }
+
 \newcommand\persiansfdefault{}
 \newcommand\persianttdefault{}
 \newcommand\iranicdefault{}
@@ -5855,60 +5853,110 @@ Persian typesetting in XeLaTeX]
 \DeclareTextFontCommand{\textnavar}{\navarfamily}
 \DeclareTextFontCommand{\textpook}{\pookfamily}
 \DeclareTextFontCommand{\textsayeh}{\sayehfamily}
-\DeclareDocumentCommand \setpersiansansfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setpersiansansfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setpersiansansfont:nn
+\DeclareDocumentCommand \setpersiansansfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \persiansfdefault {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1}{#2}
+  \fontspec_set_family:Nnn \g__xepersian_persiansffamily_family {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1,#3} {#2}
+  \tl_set_eq:NN \persiansfdefault \g__xepersian_persiansffamily_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \persiansffamily }
+   {
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_persiansffamily_family }
+    \exp_not:N \selectfont
+   }
+  }
+  \str_if_eq_x:nnT {\familydefault} {\persiansfdefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
   \ignorespaces
  }
-\DeclareDocumentCommand \setpersianmonofont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setpersianmonofont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setpersianmonofont:nn
+\DeclareDocumentCommand \setpersianmonofont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \persianttdefault {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1}{#2}
+  \fontspec_set_family:Nnn \g__xepersian_persianttfamily_family {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1,#3} {#2}
+  \tl_set_eq:NN \persianttdefault \g__xepersian_persianttfamily_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \persianttfamily }
+   {
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_persianttfamily_family }
+    \exp_not:N \selectfont
+   }
+  }
+  \str_if_eq_x:nnT {\familydefault} {\persianttdefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
   \ignorespaces
  }
-\DeclareDocumentCommand \setnavarfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setnavarfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setnavarfont:nn
+\DeclareDocumentCommand \setnavarfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \navardefault {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1}{#2}
+  \fontspec_set_family:Nnn \g__xepersian_navarfamily_family {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1,#3} {#2}
+  \tl_set_eq:NN \navardefault \g__xepersian_navarfamily_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \navarfamily }
+   {
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_navarfamily_family }
+    \exp_not:N \selectfont
+   }
+  }
+  \str_if_eq_x:nnT {\familydefault} {\navardefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
   \ignorespaces
  }
-\DeclareDocumentCommand \setpookfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setpookfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setpookfont:nn
+\DeclareDocumentCommand \setpookfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \pookdefault {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1}{#2}
+  \fontspec_set_family:Nnn \g__xepersian_pookfamily_family {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1,#3} {#2}
+  \tl_set_eq:NN \pookdefault \g__xepersian_pookfamily_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \pookfamily }
+   {
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_pookfamily_family }
+    \exp_not:N \selectfont
+   }
+  }
+  \str_if_eq_x:nnT {\familydefault} {\pookdefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
   \ignorespaces
  }
-\DeclareDocumentCommand \setsayehfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setsayehfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setsayehfont:nn
+\DeclareDocumentCommand \setsayehfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \sayehdefault {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1}{#2}
+  \fontspec_set_family:Nnn \g__xepersian_sayehfamily_family {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1,#3} {#2}
+  \tl_set_eq:NN \sayehdefault \g__xepersian_sayehfamily_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \sayehfamily }
+   {
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_sayehfamily_family }
+    \exp_not:N \selectfont
+   }
+  }
+  \str_if_eq_x:nnT {\familydefault} {\sayehdefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
   \ignorespaces
  }
-\DeclareDocumentCommand \setiranicfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setiranicfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setiranicfont:nn
+\DeclareDocumentCommand \setiranicfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \iranicdefault {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1}{#2}
+  \fontspec_set_family:Nnn \g__xepersian_iranicfamily_family {Script=Parsi,Language=Parsi,Mapping=parsidigits,#1,#3} {#2}
+  \tl_set_eq:NN \iranicdefault \g__xepersian_iranicfamily_family
+  \use:x { \exp_not:n { \DeclareRobustCommand \iranicfamily }
+   {
+    \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
+    \exp_not:N \fontfamily { \g__xepersian_iranicfamily_family }
+    \exp_not:N \selectfont
+   }
+  }
+  \str_if_eq_x:nnT {\familydefault} {\iranicdefault}
+    { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
   \ignorespaces
  }
+
+
 \ExplSyntaxOff
 \def\resetlatinfont{%
 \let\normalfont\latinfont%
@@ -7533,18 +7581,15 @@ indexblock environment may only appear inside frontpage environment.
    #1
  }
 }
-\DeclareDocumentCommand \setdigitfont { o m }{%
-  \let\glb@currsize\relax
-  \__fontspec_pass_args:nnn \__xepersian_setdigitfont:nn {#1} {#2} }
-
-\cs_new:Nn \__xepersian_setdigitfont:nn
+\DeclareDocumentCommand \setdigitfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \xepersian@digits@family {Mapping=parsidigits,#1} {#2}
+  \let\glb@currsize\relax
+  \fontspec_set_family:Nnn \g__xepersian_digitsfamily_family {Mapping=parsidigits,#1} {#2}
   \xepersian@PackageInfo{Defining the default Persian maths digits font as '#2'}
-  \DeclareSymbolFont{OPERATORS}   {\g_fontspec_encoding_tl}{\xepersian@digits@family} {m}{n}
-  \DeclareSymbolFont{new@mathbf@font@digits}{\g_fontspec_encoding_tl}{\xepersian@digits@family}{bx}{n}
-  \DeclareSymbolFont{new@mathit@font@digits}{\g_fontspec_encoding_tl}{\xepersian@digits@family}{m}{it}
-  \DeclareSymbolFont{new@mathrm@font@digits}{\g_fontspec_encoding_tl}{\xepersian@digits@family}{m}{n}
+  \DeclareSymbolFont{OPERATORS}   {\g_fontspec_encoding_tl}{\g__xepersian_digitsfamily_family} {m}{n}
+  \DeclareSymbolFont{new@mathbf@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_digitsfamily_family}{bx}{n}
+  \DeclareSymbolFont{new@mathit@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_digitsfamily_family}{m}{it}
+  \DeclareSymbolFont{new@mathrm@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_digitsfamily_family}{m}{n}
   \def\persianmathsdigits{%
   \SetMathCode{`0}{\mathalpha}{OPERATORS}{`0}
   \SetMathCode{`1}{\mathalpha}{OPERATORS}{`1}
@@ -7561,28 +7606,28 @@ indexblock environment may only appear inside frontpage environment.
 %\changes{v13.5}{2013/10/21}{Fixed the extra space after Persian decimal separator.}
 %    \begin{macrocode}
   \SetMathCharDef{\decimalseparator}{\mathord}{OPERATORS}{"066B}
-  \cs_set_eq:NN \mathbf \new@mathbf
-  \cs_set_eq:NN \mathit \new@mathit
-  \cs_set_eq:NN \mathrm \new@mathrm}
+  \tl_set_eq:NN \mathbf \new@mathbf
+  \tl_set_eq:NN \mathit \new@mathit
+  \tl_set_eq:NN \mathrm \new@mathrm}
  }
-\DeclareDocumentCommand \setmathsfdigitfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setmathsfdigitfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setmathsfdigitfont:nn
+
+\DeclareDocumentCommand \setmathsfdigitfont { O{} m O{} }
  {
   \fontspec_set_family:Nnn \g__fontspec_mathsf_tl {Mapping=parsidigits,#1} {#2}
-  \DeclareSymbolFont{new@mathsf@font@digits}{\g_fontspec_encoding_tl}{\g__fontspec_mathsf_tl}{m}{n}
-  \def\persianmathsfdigits{\cs_set_eq:NN \mathsf \new@mathsf}
+    \DeclareSymbolFont{new@mathsf@font@digits}{\g_fontspec_encoding_tl}{\g__fontspec_mathsf_tl}{m}{n}
+    \def\persianmathsfdigits{\tl_set_eq:NN \mathsf \new@mathsf}
  }
-\DeclareDocumentCommand \setmathttdigitfont { o m }
- { \__fontspec_pass_args:nnn \__xepersian_setmathttdigitfont:nn {#1} {#2} }
 
-\cs_new:Nn \__xepersian_setmathttdigitfont:nn
+
+
+\DeclareDocumentCommand \setmathttdigitfont { O{} m O{} }
  {
   \fontspec_set_family:Nnn \g__fontspec_mathtt_tl {Mapping=parsidigits,#1} {#2}
-  \DeclareSymbolFont{new@mathtt@font@digits}{\g_fontspec_encoding_tl}{\g__fontspec_mathtt_tl}{m}{n}
-  \def\persianmathttdigits{\cs_set_eq:NN \mathtt \new@mathtt}
+    \DeclareSymbolFont{new@mathtt@font@digits}{\g_fontspec_encoding_tl}{\g__fontspec_mathtt_tl}{m}{n}
+    \def\persianmathttdigits{\tl_set_eq:NN \mathtt \new@mathtt}
  }
+
 \ExplSyntaxOff
 \ifx\newcommand\undefined\else
   \newcommand{\ZifferAn}{}
