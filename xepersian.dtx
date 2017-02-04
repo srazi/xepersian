@@ -2537,8 +2537,8 @@ by Vafa Khalighi.
 % \subsection{\textsf{bidituftesidenote-xepersian.def}}
 %    \begin{macrocode}
 \ProvidesFile{bidituftesidenote-xepersian.def}[2017/02/04 v0.3 xepersian changes to bidituftesidenote package]
-\setLTRcitationfont{\resetlatinfont\footnotesize}
 
+\setLTRcitationfont{\resetlatinfont\footnotesize}
 
 \renewcommand*{\@bidituftesidenote@LTRmarginfont}{\resetlatinfont\footnotesize}
 
@@ -5981,13 +5981,14 @@ number is 999,999,999.}%
  for the main Persian text}{Use `\settextfont' to load a font.}%
 }{}}
 \@ifdefinitionfileloaded{loadingorder-xetex-bidi}{\input{loadingorder-xepersian.def}}{}
+\@ifdefinitionfileloaded{footnote-xetex-bidi}{\input{footnote-xepersian.def}}{}
 \@ifpackageloaded{appendix}{\input{appendix-xepersian.def}}{}
 \@ifpackageloaded{listings}{\input{listings-xepersian.def}}{}
 \@ifpackageloaded{algorithmic}{\input{algorithmic-xepersian.def}}{}
 \@ifpackageloaded{algorithm}{\input{algorithm-xepersian.def}}{}
 \@ifpackageloaded{backref}{\input{backref-xepersian.def}}{}
 \@ifpackageloaded{flowfram}{\input{flowfram-xepersian.def}}{}
-\@ifpackageloaded{bidituftesidenote}{\input{bidituftesidenote-xepersian.def}}{\input{footnote-xepersian.def}}
+\@ifpackageloaded{bidituftesidenote}{\input{bidituftesidenote-xepersian.def}}{}
 \@ifpackageloaded{breqn}{\input{breqn-xepersian.def}}{}
 \@ifpackageloaded{enumerate}{\input{enumerate-xepersian.def}}{}
 \@ifpackageloaded{framed}{\input{framed-xepersian.def}}{}
