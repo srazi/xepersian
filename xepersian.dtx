@@ -5778,7 +5778,6 @@ Persian typesetting in XeLaTeX]
 \DeclareDocumentCommand \setlatintextfont { O{} m O{} }
  {
   \fontspec_set_family:Nnn \g__xepersian_latinfont_family {Mapping=tex-text,#1,#3} {#2}
-  \tl_set_eq:NN \rmdefault \g__xepersian_latinfont_family
   \use:x { \exp_not:n { \DeclareRobustCommand \latinfont }
    {
     \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
