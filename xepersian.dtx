@@ -2406,65 +2406,11 @@ by Vafa Khalighi.
 %\fi
 % \subsection{\textsf{amsart-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{amsart-xepersian.def}[2013/04/26 v0.3 adaptations for amsart class]
+\ProvidesFile{amsart-xepersian.def}[2017/02/04 v0.4 adaptations for amsart class]
 \renewcommand \thepart {\@tartibi\c@part}
 \def\appendix{\par\c@section\z@ \c@subsection\z@
    \let\sectionname\appendixname
    \def\thesection{\@harfi\c@section}}
-
-\long\def\@footnotetext#1{%
-  \insert\footins{%
-    \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\unskip\strut\par}}}
-
-
-
-
-
-\long\def\@RTLfootnotetext#1{%
-  \insert\footins{%
-    \@RTLtrue%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\setpersianfont #1\unskip\strut\par}}}
-
-
-
-
-
-    
-    
-\long\def\@LTRfootnotetext#1{%
-  \insert\footins{%
-    \@RTLfalse%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\resetlatinfont  #1\unskip\strut\par}}}    
-      
-      
-\footdir@temp\footdir@ORG@xepersian@amsart@footnotetext\@footnotetext{\bidi@footdir@footnote}%
-\footdir@temp\footdir@ORG@xepersian@amsart@RTLfootnotetext\@RTLfootnotetext{R}%
-\footdir@temp\footdir@ORG@xepersian@amsart@LTRfootnotetext\@LTRfootnotetext{L}%      
 
 %    \end{macrocode}
 % \iffalse
@@ -2473,7 +2419,7 @@ by Vafa Khalighi.
 %\fi
 % \subsection{\textsf{amsbook-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{amsbook-xepersian.def}[2013/04/26 v0.4 adaptations for amsbook class]
+\ProvidesFile{amsbook-xepersian.def}[2017/02/04 v0.5 adaptations for amsbook class]
 \def\frontmatter{\cleardoublepage\pagenumbering{harfi}}
 \renewcommand \thepart {\@tartibi\c@part}
 \def\appendix{\par
@@ -2481,58 +2427,6 @@ by Vafa Khalighi.
   \let\chaptername\appendixname
   \def\thechapter{\@harfi\c@chapter}}
 
-\long\def\@footnotetext#1{%
-  \insert\footins{%
-    \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\unskip\strut\par}}}
-
-
-
-
-
-\long\def\@RTLfootnotetext#1{%
-  \insert\footins{%
-    \@RTLtrue%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\setpersianfont #1\unskip\strut\par}}}
-
-
-
-
-
-    
-    
-\long\def\@LTRfootnotetext#1{%
-  \insert\footins{%
-    \@RTLfalse%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\resetlatinfont  #1\unskip\strut\par}}}    
-      
-\footdir@temp\footdir@ORG@xepersian@amsbook@footnotetext\@footnotetext{\bidi@footdir@footnote}%
-\footdir@temp\footdir@ORG@xepersian@amsbook@RTLfootnotetext\@RTLfootnotetext{R}%
-\footdir@temp\footdir@ORG@xepersian@amsbook@LTRfootnotetext\@LTRfootnotetext{L}%
       
 %    \end{macrocode}
 % \iffalse
@@ -2642,76 +2536,15 @@ by Vafa Khalighi.
 %\fi
 % \subsection{\textsf{bidituftesidenote-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{bidituftesidenote-xepersian.def}[2014/12/28 v0.2 xepersian changes to bidituftesidenote package]
+\ProvidesFile{bidituftesidenote-xepersian.def}[2017/02/04 v0.3 xepersian changes to bidituftesidenote package]
 \setLTRcitationfont{\@bidituftesidenote@marginfont\resetlatinfont}
-\long\def\@LTRbidituftesidenote@sidenote[#1][#2]#3{%
-  \let\cite\@bidituftesidenote@infootnote@cite%   use the in-sidenote \cite command
-  \gdef\@bidituftesidenote@citations{}%           clear out any old citations
-  \ifthenelse{\NOT\isempty{#2}}{%
-    \gsetlength{\@bidituftesidenote@sidenote@vertical@offset}{#2}%
-  }{%
-    \gsetlength{\@bidituftesidenote@sidenote@vertical@offset}{0pt}%
-  }%
-  \ifthenelse{\isempty{#1}}{%
-    % no specific footnote number provided
-    \stepcounter\@mpfn%
-    \protected@xdef\@thefnmark{\thempfn}%
-    \@footnotemark\@LTRfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\resetlatinfont#3}%
-  }{%
-    % specific footnote number provided
-    \begingroup%
-      \csname c@\@mpfn\endcsname #1\relax%
-      \unrestored@protected@xdef\@thefnmark{\thempfn}%
-    \endgroup%
-    \@footnotemark\@LTRfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\resetlatinfont#3}%
-  }%
-  \@bidituftesidenote@print@citations%            print any citations
-  \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
-  \unskip\ignorespaces%               remove extra white space
-  \kern-\multiplefootnotemarker%      remove \kern left behind by sidenote
-  \kern\multiplefootnotemarker\relax% add new \kern here to replace the one we yanked
-}
-\long\def\@RTLbidituftesidenote@sidenote[#1][#2]#3{%
-  \let\cite\@bidituftesidenote@infootnote@cite%   use the in-sidenote \cite command
-  \gdef\@bidituftesidenote@citations{}%           clear out any old citations
-  \ifthenelse{\NOT\isempty{#2}}{%
-    \gsetlength{\@bidituftesidenote@sidenote@vertical@offset}{#2}%
-  }{%
-    \gsetlength{\@bidituftesidenote@sidenote@vertical@offset}{0pt}%
-  }%
-  \ifthenelse{\isempty{#1}}{%
-    % no specific footnote number provided
-    \stepcounter\@mpfn%
-    \protected@xdef\@thefnmark{\thempfn}%
-    \@footnotemark\@RTLfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\setpersianfont#3}%
-  }{%
-    % specific footnote number provided
-    \begingroup%
-      \csname c@\@mpfn\endcsname #1\relax%
-      \unrestored@protected@xdef\@thefnmark{\thempfn}%
-    \endgroup%
-    \@footnotemark\@RTLfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\setpersianfont#3}%
-  }%
-  \@bidituftesidenote@print@citations%            print any citations
-  \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
-  \unskip\ignorespaces%               remove extra white space
-  \kern-\multiplefootnotemarker%      remove \kern left behind by sidenote
-  \kern\multiplefootnotemarker\relax% add new \kern here to replace the one we yanked
-}
-\renewcommand\LTRmarginnote[2][0pt]{%
-  \let\cite\@bidituftesidenote@infootnote@cite%   use the in-sidenote \cite command
-  \gdef\@bidituftesidenote@citations{}%           clear out any old citations
-  \LTRbidituftesidenotemarginpar{\hbox{}\vspace*{#1}\@bidituftesidenote@marginnote@font\resetlatinfont\@bidituftesidenote@marginnote@justification\@bidituftesidenote@margin@par\vspace*{-1\baselineskip}\noindent #2}%
-  \@bidituftesidenote@print@citations%            print any citations
-  \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
-}
-\renewcommand\RTLmarginnote[2][0pt]{%
-  \let\cite\@bidituftesidenote@infootnote@cite%   use the in-sidenote \cite command
-  \gdef\@bidituftesidenote@citations{}%           clear out any old citations
-  \RTLbidituftesidenotemarginpar{\hbox{}\vspace*{#1}\@bidituftesidenote@marginnote@font\setpersianfont\@bidituftesidenote@marginnote@justification\@bidituftesidenote@margin@par\vspace*{-1\baselineskip}\noindent #2}%
-  \@bidituftesidenote@print@citations%            print any citations
-  \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
-}
+
+
+\renewcommand*{\@bidituftesidenote@LTRmarginfont}{\resetlatinfont\footnotesize}
+
+\renewcommand*{\@bidituftesidenote@RTLmarginfont}{\setpersianfont\footnotesize}
+
+
 %    \end{macrocode}
 % \iffalse
 %</bidituftesidenote-xepersian.def>
@@ -4064,115 +3897,14 @@ by Vafa Khalighi.
 %\fi
 % \subsection{\textsf{footnote-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{footnote-xepersian.def}[2013/04/26 v0.4 footnote macros for xepersian package]
+\ProvidesFile{footnote-xepersian.def}[2017/02/04 v0.5 footnote macros for xepersian package]
 
-    
-    
-\long\def\@footnotetext#1{\insert\footins{%
-    \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
-    \reset@font\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep
-    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
-    \hsize\columnwidth \@parboxrestore
-    \protected@edef\@currentlabel{%
-       \csname p@footnote\endcsname\@thefnmark
-    }%
-    \color@begingroup
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\@finalstrut\strutbox}%
-    \color@endgroup}}%
-    
-    
+\newcommand*{\bidi@@footnotetext@font}{\if@RTL@footnote\reset@font\else\resetlatinfont\fi\footnotesize} 
 
-    
-    
-\long\def\@RTLfootnotetext#1{\insert\footins{%
-    \@RTLtrue%
-    \reset@font\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep
-    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
-    \hsize\columnwidth \@parboxrestore
-    \protected@edef\@currentlabel{%
-       \csname p@footnote\endcsname\@thefnmark
-    }%
-    \color@begingroup
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\setpersianfont #1\@finalstrut\strutbox}%
-    \color@endgroup}}%
-    
-    
+\newcommand*{\bidi@@LTRfootnotetext@font}{\resetlatinfont\footnotesize} 
 
+\newcommand*{\bidi@@RTLfootnotetext@font}{\setpersianfont\footnotesize}  
     
-    
-\long\def\@LTRfootnotetext#1{\insert\footins{%
-    \@RTLfalse%
-    \reset@font\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep
-    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
-    \hsize\columnwidth \@parboxrestore
-    \protected@edef\@currentlabel{%
-       \csname p@footnote\endcsname\@thefnmark
-    }%
-    \color@begingroup
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\resetlatinfont #1\@finalstrut\strutbox}%
-    \color@endgroup}}%
-    
-\footdir@temp\footdir@ORG@xepersian@footnotetext\@footnotetext{\bidi@footdir@footnote}%
-\footdir@temp\footdir@ORG@xepersian@RTLfootnotetext\@RTLfootnotetext{R}%
-\footdir@temp\footdir@ORG@xepersian@LTRfootnotetext\@LTRfootnotetext{L}%    
-
-    
-    
-\long\def\@mpfootnotetext#1{%
- \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\if@RTL@footnote\global\let\bidi@mpfootnoterule\right@footnoterule\else\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi\fi%
-  \global\setbox\@mpfootins\vbox{\if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
-    \unvbox\@mpfootins
-    \reset@font\footnotesize
-    \hsize\columnwidth
-    \@parboxrestore
-    \protected@edef\@currentlabel
-         {\csname p@mpfootnote\endcsname\@thefnmark}%
-    \color@begingroup
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\@finalstrut\strutbox}%
-    \color@endgroup}}    
-    
-    
-
-    
-    
-\long\def\@mpRTLfootnotetext#1{%
-  \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\right@footnoterule\fi\fi%
-  \global\setbox\@mpfootins\vbox{\@RTLtrue%
-    \unvbox\@mpfootins
-    \reset@font\footnotesize
-    \hsize\columnwidth
-    \@parboxrestore
-    \protected@edef\@currentlabel
-         {\csname p@mpfootnote\endcsname\@thefnmark}%
-    \color@begingroup
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\setpersianfont #1\@finalstrut\strutbox}%
-    \color@endgroup}}    
-    
-    
-\long\def\@mpLTRfootnotetext#1{%
- \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi%
-  \global\setbox\@mpfootins\vbox{\@RTLfalse%
-    \unvbox\@mpfootins
-    \reset@font\footnotesize
-    \hsize\columnwidth
-    \@parboxrestore
-    \protected@edef\@currentlabel
-         {\csname p@mpfootnote\endcsname\@thefnmark}%
-    \color@begingroup
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\resetlatinfont #1\@finalstrut\strutbox}%
-    \color@endgroup}}
 %    \end{macrocode}
 % \iffalse
 %</footnote-xepersian.def>
@@ -4306,60 +4038,7 @@ by Vafa Khalighi.
   \raise.9ex\hbox{\fontsize\sf@size\z@\normalfont\@thefnmark}%
 }
 
-
-
-\long\def\@footnotetext#1{%
-  \insert\footins{%
-    \if@RTL@footnote\@RTLtrue\else\@RTLfalse\fi%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\unskip\strut\par}}}
-
-
-
-
-
-\long\def\@RTLfootnotetext#1{%
-  \insert\footins{%
-    \@RTLtrue%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\setpersianfont #1\unskip\strut\par}}}
-
-
-
-
-
-    
-    
-\long\def\@LTRfootnotetext#1{%
-  \insert\footins{%
-    \@RTLfalse%
-    \normalfont\footnotesize
-    \interlinepenalty\interfootnotelinepenalty
-    \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
-    \floatingpenalty\@MM \hsize\columnwidth
-    \@parboxrestore \parindent\normalparindent \sloppy
-    \protected@edef\@currentlabel{%
-      \csname p@footnote\endcsname\@thefnmark}%
-    \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\resetlatinfont  #1\unskip\strut\par}}}    
-
-\footdir@temp\footdir@ORG@xepersian@imsproc@footnotetext\@footnotetext{\bidi@footdir@footnote}%
-\footdir@temp\footdir@ORG@xepersian@imsproc@RTLfootnotetext\@RTLfootnotetext{R}%
-\footdir@temp\footdir@ORG@xepersian@imsproc@LTRfootnotetext\@LTRfootnotetext{L}%    
+ 
     
 \def\part{\@startsection{part}{0}%
   \z@{\linespacing\@plus\linespacing}{.5\linespacing}%
