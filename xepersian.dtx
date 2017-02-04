@@ -3899,11 +3899,11 @@ by Vafa Khalighi.
 %    \begin{macrocode}
 \ProvidesFile{footnote-xepersian.def}[2017/02/04 v0.5 footnote macros for xepersian package]
 
-\newcommand*{\bidi@@footnotetext@font}{\if@RTL@footnote\reset@font\else\resetlatinfont\fi\footnotesize} 
+\renewcommand*{\bidi@@footnotetext@font}{\if@RTL@footnote\reset@font\else\resetlatinfont\fi\footnotesize} 
 
-\newcommand*{\bidi@@LTRfootnotetext@font}{\resetlatinfont\footnotesize} 
+\renewcommand*{\bidi@@LTRfootnotetext@font}{\resetlatinfont\footnotesize} 
 
-\newcommand*{\bidi@@RTLfootnotetext@font}{\setpersianfont\footnotesize}  
+\renewcommand*{\bidi@@RTLfootnotetext@font}{\setpersianfont\footnotesize}  
     
 %    \end{macrocode}
 % \iffalse
