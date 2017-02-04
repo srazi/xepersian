@@ -7583,7 +7583,7 @@ indexblock environment may only appear inside frontpage environment.
 \DeclareDocumentCommand \setdigitfont { O{} m O{} }
  {
   \let\glb@currsize\relax
-  \fontspec_set_family:Nnn \g__xepersian_digitsfamily_family {Mapping=parsidigits,#1} {#2}
+  \fontspec_set_family:Nnn \g__xepersian_digitsfamily_family {Mapping=parsidigits,#1,#3} {#2}
   \xepersian@PackageInfo{Defining the default Persian maths digits font as '#2'}
   \DeclareSymbolFont{OPERATORS}   {\g_fontspec_encoding_tl}{\g__xepersian_digitsfamily_family} {m}{n}
   \DeclareSymbolFont{new@mathbf@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_digitsfamily_family}{bx}{n}
@@ -7613,7 +7613,7 @@ indexblock environment may only appear inside frontpage environment.
 
 \DeclareDocumentCommand \setmathsfdigitfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \g__fontspec_mathsf_tl {Mapping=parsidigits,#1} {#2}
+  \fontspec_set_family:Nnn \g__fontspec_mathsf_tl {Mapping=parsidigits,#1,#3} {#2}
     \DeclareSymbolFont{new@mathsf@font@digits}{\g_fontspec_encoding_tl}{\g__fontspec_mathsf_tl}{m}{n}
     \def\persianmathsfdigits{\tl_set_eq:NN \mathsf \new@mathsf}
  }
@@ -7622,7 +7622,7 @@ indexblock environment may only appear inside frontpage environment.
 
 \DeclareDocumentCommand \setmathttdigitfont { O{} m O{} }
  {
-  \fontspec_set_family:Nnn \g__fontspec_mathtt_tl {Mapping=parsidigits,#1} {#2}
+  \fontspec_set_family:Nnn \g__fontspec_mathtt_tl {Mapping=parsidigits,#1,#3} {#2}
     \DeclareSymbolFont{new@mathtt@font@digits}{\g_fontspec_encoding_tl}{\g__fontspec_mathtt_tl}{m}{n}
     \def\persianmathttdigits{\tl_set_eq:NN \mathtt \new@mathtt}
  }
