@@ -2423,7 +2423,7 @@ by Vafa Khalighi.
     \protected@edef\@currentlabel{%
       \csname p@footnote\endcsname\@thefnmark}%
     \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\@nonlatinfalse\resetlatinfont#1\fi\unskip\strut\par}}}
+      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\unskip\strut\par}}}
 
 
 
@@ -2432,7 +2432,6 @@ by Vafa Khalighi.
 \long\def\@RTLfootnotetext#1{%
   \insert\footins{%
     \@RTLtrue%
-    \@nonlatintrue%
     \normalfont\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
@@ -2452,7 +2451,6 @@ by Vafa Khalighi.
 \long\def\@LTRfootnotetext#1{%
   \insert\footins{%
     \@RTLfalse%
-    \@nonlatinfalse%
     \normalfont\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
@@ -2494,7 +2492,7 @@ by Vafa Khalighi.
     \protected@edef\@currentlabel{%
       \csname p@footnote\endcsname\@thefnmark}%
     \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\@nonlatinfalse\resetlatinfont#1\fi\unskip\strut\par}}}
+      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\unskip\strut\par}}}
 
 
 
@@ -2503,7 +2501,6 @@ by Vafa Khalighi.
 \long\def\@RTLfootnotetext#1{%
   \insert\footins{%
     \@RTLtrue%
-    \@nonlatintrue%
     \normalfont\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
@@ -2523,7 +2520,6 @@ by Vafa Khalighi.
 \long\def\@LTRfootnotetext#1{%
   \insert\footins{%
     \@RTLfalse%
-    \@nonlatinfalse%
     \normalfont\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
@@ -2647,7 +2643,7 @@ by Vafa Khalighi.
 % \subsection{\textsf{bidituftesidenote-xepersian.def}}
 %    \begin{macrocode}
 \ProvidesFile{bidituftesidenote-xepersian.def}[2014/12/28 v0.2 xepersian changes to bidituftesidenote package]
-\setLTRcitationfont{\@bidituftesidenote@marginfont\@nonlatinfalse\resetlatinfont}
+\setLTRcitationfont{\@bidituftesidenote@marginfont\resetlatinfont}
 \long\def\@LTRbidituftesidenote@sidenote[#1][#2]#3{%
   \let\cite\@bidituftesidenote@infootnote@cite%   use the in-sidenote \cite command
   \gdef\@bidituftesidenote@citations{}%           clear out any old citations
@@ -2660,14 +2656,14 @@ by Vafa Khalighi.
     % no specific footnote number provided
     \stepcounter\@mpfn%
     \protected@xdef\@thefnmark{\thempfn}%
-    \@footnotemark\@LTRfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\@nonlatinfalse\resetlatinfont#3}%
+    \@footnotemark\@LTRfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\resetlatinfont#3}%
   }{%
     % specific footnote number provided
     \begingroup%
       \csname c@\@mpfn\endcsname #1\relax%
       \unrestored@protected@xdef\@thefnmark{\thempfn}%
     \endgroup%
-    \@footnotemark\@LTRfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\@nonlatinfalse\resetlatinfont#3}%
+    \@footnotemark\@LTRfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\resetlatinfont#3}%
   }%
   \@bidituftesidenote@print@citations%            print any citations
   \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
@@ -2687,14 +2683,14 @@ by Vafa Khalighi.
     % no specific footnote number provided
     \stepcounter\@mpfn%
     \protected@xdef\@thefnmark{\thempfn}%
-    \@footnotemark\@RTLfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\@nonlatintrue\setpersianfont#3}%
+    \@footnotemark\@RTLfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\setpersianfont#3}%
   }{%
     % specific footnote number provided
     \begingroup%
       \csname c@\@mpfn\endcsname #1\relax%
       \unrestored@protected@xdef\@thefnmark{\thempfn}%
     \endgroup%
-    \@footnotemark\@RTLfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\@nonlatintrue\setpersianfont#3}%
+    \@footnotemark\@RTLfootnotetext[\@bidituftesidenote@sidenote@vertical@offset]{\setpersianfont#3}%
   }%
   \@bidituftesidenote@print@citations%            print any citations
   \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
@@ -2705,14 +2701,14 @@ by Vafa Khalighi.
 \renewcommand\LTRmarginnote[2][0pt]{%
   \let\cite\@bidituftesidenote@infootnote@cite%   use the in-sidenote \cite command
   \gdef\@bidituftesidenote@citations{}%           clear out any old citations
-  \LTRbidituftesidenotemarginpar{\hbox{}\vspace*{#1}\@bidituftesidenote@marginnote@font\@nonlatinfalse\resetlatinfont\@bidituftesidenote@marginnote@justification\@bidituftesidenote@margin@par\vspace*{-1\baselineskip}\noindent #2}%
+  \LTRbidituftesidenotemarginpar{\hbox{}\vspace*{#1}\@bidituftesidenote@marginnote@font\resetlatinfont\@bidituftesidenote@marginnote@justification\@bidituftesidenote@margin@par\vspace*{-1\baselineskip}\noindent #2}%
   \@bidituftesidenote@print@citations%            print any citations
   \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
 }
 \renewcommand\RTLmarginnote[2][0pt]{%
   \let\cite\@bidituftesidenote@infootnote@cite%   use the in-sidenote \cite command
   \gdef\@bidituftesidenote@citations{}%           clear out any old citations
-  \RTLbidituftesidenotemarginpar{\hbox{}\vspace*{#1}\@bidituftesidenote@marginnote@font\@nonlatintrue\setpersianfont\@bidituftesidenote@marginnote@justification\@bidituftesidenote@margin@par\vspace*{-1\baselineskip}\noindent #2}%
+  \RTLbidituftesidenotemarginpar{\hbox{}\vspace*{#1}\@bidituftesidenote@marginnote@font\setpersianfont\@bidituftesidenote@marginnote@justification\@bidituftesidenote@margin@par\vspace*{-1\baselineskip}\noindent #2}%
   \@bidituftesidenote@print@citations%            print any citations
   \let\cite\@bidituftesidenote@normal@cite%       go back to using normal in-text \cite command
 }
@@ -4008,9 +4004,9 @@ by Vafa Khalighi.
 % \subsection{\textsf{extrafootnotefeatures-xepersian.def}}
 %    \begin{macrocode}
 \ProvidesFile{extrafootnotefeatures-xepersian.def}[2012/01/01 v0.2 footnote macros for extrafootnotefeatures option of xepersian package]
-\renewcommand{\foottextfont}{\footnotesize\if@RTL@footnote\else\@nonlatinfalse\resetlatinfont\fi}
-\renewcommand{\LTRfoottextfont}{\@nonlatinfalse\footnotesize\resetlatinfont}
-\renewcommand{\RTLfoottextfont}{\@nonlatintrue\footnotesize\setpersianfont}
+\renewcommand{\foottextfont}{\footnotesize\if@RTL@footnote\else\resetlatinfont\fi}
+\renewcommand{\LTRfoottextfont}{\footnotesize\resetlatinfont}
+\renewcommand{\RTLfoottextfont}{\footnotesize\setpersianfont}
 %    \end{macrocode}
 % \iffalse
 %</extrafootnotefeatures-xepersian.def>
@@ -4084,7 +4080,7 @@ by Vafa Khalighi.
     }%
     \color@begingroup
       \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\@nonlatinfalse\resetlatinfont#1\fi\@finalstrut\strutbox}%
+        \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\@finalstrut\strutbox}%
     \color@endgroup}}%
     
     
@@ -4093,7 +4089,6 @@ by Vafa Khalighi.
     
 \long\def\@RTLfootnotetext#1{\insert\footins{%
     \@RTLtrue%
-    \@nonlatintrue%
     \reset@font\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep
@@ -4113,7 +4108,6 @@ by Vafa Khalighi.
     
 \long\def\@LTRfootnotetext#1{\insert\footins{%
     \@RTLfalse%
-    \@nonlatinfalse%
     \reset@font\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep
@@ -4144,7 +4138,7 @@ by Vafa Khalighi.
          {\csname p@mpfootnote\endcsname\@thefnmark}%
     \color@begingroup
       \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\@nonlatinfalse\resetlatinfont#1\fi\@finalstrut\strutbox}%
+        \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\@finalstrut\strutbox}%
     \color@endgroup}}    
     
     
@@ -4153,7 +4147,7 @@ by Vafa Khalighi.
     
 \long\def\@mpRTLfootnotetext#1{%
   \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\right@footnoterule\fi\fi%
-  \global\setbox\@mpfootins\vbox{\@RTLtrue\@nonlatintrue%
+  \global\setbox\@mpfootins\vbox{\@RTLtrue%
     \unvbox\@mpfootins
     \reset@font\footnotesize
     \hsize\columnwidth
@@ -4168,7 +4162,7 @@ by Vafa Khalighi.
     
 \long\def\@mpLTRfootnotetext#1{%
  \ifbidi@autofootnoterule\ifnum\c@mpfootnote=\@ne\global\let\bidi@mpfootnoterule\left@footnoterule\fi\fi%
-  \global\setbox\@mpfootins\vbox{\@RTLfalse\@nonlatinfalse%
+  \global\setbox\@mpfootins\vbox{\@RTLfalse%
     \unvbox\@mpfootins
     \reset@font\footnotesize
     \hsize\columnwidth
@@ -4325,7 +4319,7 @@ by Vafa Khalighi.
     \protected@edef\@currentlabel{%
       \csname p@footnote\endcsname\@thefnmark}%
     \@makefntext{%
-      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\@nonlatinfalse\resetlatinfont#1\fi\unskip\strut\par}}}
+      \rule\z@\footnotesep\ignorespaces\if@RTL@footnote#1\else\resetlatinfont#1\fi\unskip\strut\par}}}
 
 
 
@@ -4334,7 +4328,6 @@ by Vafa Khalighi.
 \long\def\@RTLfootnotetext#1{%
   \insert\footins{%
     \@RTLtrue%
-    \@nonlatintrue%
     \normalfont\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
@@ -4354,7 +4347,6 @@ by Vafa Khalighi.
 \long\def\@LTRfootnotetext#1{%
   \insert\footins{%
     \@RTLfalse%
-    \@nonlatinfalse%
     \normalfont\footnotesize
     \interlinepenalty\interfootnotelinepenalty
     \splittopskip\footnotesep \splitmaxdepth \dp\strutbox
@@ -5958,27 +5950,28 @@ Persian typesetting in XeLaTeX]
 
 \ExplSyntaxOff
 \def\resetlatinfont{%
+\@nonlatinfalse%
 \let\normalfont\latinfont%
 \let\reset@font\normalfont%
 \latinfont}
 \def\setpersianfont{%
+\@nonlatintrue%
 \let\normalfont\persianfont%
 \let\reset@font\normalfont%
 \persianfont}
-\bidi@newrobustcmd*{\lr}[1]{\LRE{\@nonlatinfalse\resetlatinfont#1}}
-\bidi@newrobustcmd*{\rl}[1]{\RLE{\@nonlatintrue\setpersianfont#1}}
-\def\latin{\LTR\LatinAlphs\@nonlatinfalse\@RTL@footnotefalse\resetlatinfont}
+\bidi@newrobustcmd*{\lr}[1]{\LRE{\resetlatinfont#1}}
+\bidi@newrobustcmd*{\rl}[1]{\RLE{\setpersianfont#1}}
+\def\latin{\LTR\LatinAlphs\@RTL@footnotefalse\resetlatinfont}
 \def\endlatin{\endLTR}
-\def\persian{\RTL\PersianAlphs\@nonlatintrue\@RTL@footnotetrue\setpersianfont}
+\def\persian{\RTL\PersianAlphs\@RTL@footnotetrue\setpersianfont}
 \def\endpersian{\endRTL}
-\newenvironment{latinitems}{\begin{LTRitems}\LatinAlphs\@nonlatinfalse\@RTL@footnotefalse\resetlatinfont}{\end{LTRitems}}
-\newenvironment{parsiitems}{\begin{RTLitems}\PersianAlphs\@nonlatintrue\@RTL@footnotetrue\setpersianfont}{\end{RTLitems}}
+\newenvironment{latinitems}{\begin{LTRitems}\LatinAlphs\@RTL@footnotefalse\resetlatinfont}{\end{LTRitems}}
+\newenvironment{parsiitems}{\begin{RTLitems}\PersianAlphs\@RTL@footnotetrue\setpersianfont}{\end{RTLitems}}
 \let\originaltoday=\today
 \def\latintoday{\lr{\originaltoday}}
 \def\today{\rl{\persiantoday}}
 \def \@LTRmarginparreset {%
         \reset@font
-        \@nonlatinfalse
         \resetlatinfont
         \normalsize
         \@minipagetrue
@@ -5998,7 +5991,7 @@ Persian typesetting in XeLaTeX]
          {Citation `\@citeb' on page \thepage \space undefined}}%
        {\@cite@ofmt{\csname b@\@citeb\endcsname}}}}}{#1}}
        
-\renewcommand*{\bidi@font@@outputpage}{\if@RTLmain\@nonlatintrue\setpersianfont\else\@nonlatinfalse\resetlatinfont\fi}
+\renewcommand*{\bidi@font@@outputpage}{\if@RTLmain\setpersianfont\else\resetlatinfont\fi}
        
 
 \newcommand\twocolumnstableofcontents{%
