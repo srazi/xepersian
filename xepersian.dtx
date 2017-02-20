@@ -2359,7 +2359,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9373}
+%% \CheckSum{9363}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5683,9 +5683,7 @@ Persian typesetting in XeLaTeX]
  \ifdim\dp\xepersian@wbox>\xepersian@strutilg\xepersian@strutilg=\dp\xepersian@wbox\fi
  \advance\xepersian@tcl by 1
  \ifnum\xepersian@tcl<1791\repeat
- \ht\xepersian@wbox=\xepersian@ilg
- \dp\xepersian@wbox=\xepersian@strutilg
- \xepersian@strutilg=\ht\xepersian@wbox \advance\xepersian@strutilg by\dp\xepersian@wbox 
+ \advance\xepersian@strutilg by \xepersian@ilg
  \ifdim\xepersian@strutilg>\baselineskip
   \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
   \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
