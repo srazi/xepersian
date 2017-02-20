@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v17.5
+v17.6
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -28,7 +28,7 @@ a minimal working example showing the issue, and always choose the appropriate
 label for your query (i.e. if you are reporting any bugs, choose `Bug' label). 
 
 
-Current version release date: 2017/02/05
+Current version release date: 2017/02/20
 ______________
 Vafa Khalighi
 persian-tex@tug.org
@@ -272,7 +272,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 17.5}}
+%\large Documentation for \textcolor{blue!65!black}{version 17.6}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}}
 %\setcounter{page}{0}
@@ -283,7 +283,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 17.5}}
+%Documentation for \textcolor{blue!65!black}{version 17.6}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -338,7 +338,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v17.5, 2017/02/05
+%* v17.6, 2017/02/20
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2359,7 +2359,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9307}
+%% \CheckSum{9373}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5347,8 +5347,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v17.5}
-\def\xepersiandate{2017/02/05}
+\def\xepersianversion{v17.6}
+\def\xepersiandate{2017/02/20}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
 \RequirePackage{fontspec}
@@ -5672,6 +5672,27 @@ Persian typesetting in XeLaTeX]
        
 \renewcommand*{\bidi@font@@outputpage}{\if@RTLmain\setpersianfont\else\resetlatinfont\fi}
        
+\newcount\xepersian@tcl
+\newdimen\xepersian@ilg
+\newdimen\xepersian@strutilg
+\newbox\xepersian@wbox
+\newcommand*{\computeautoilg}{% compute the interline glue
+ \xepersian@tcl=1536\xepersian@ilg=0pt\xepersian@strutilg=0pt
+ \loop\setbox\xepersian@wbox=\hbox{\char\xepersian@tcl}
+ \ifdim\ht\xepersian@wbox>\xepersian@ilg\xepersian@ilg=\ht\xepersian@wbox\fi
+ \ifdim\dp\xepersian@wbox>\xepersian@strutilg\xepersian@strutilg=\dp\xepersian@wbox\fi
+ \advance\xepersian@tcl by 1
+ \ifnum\xepersian@tcl<1791\repeat
+ \ht\xepersian@wbox=\xepersian@ilg
+ \dp\xepersian@wbox=\xepersian@strutilg
+ \xepersian@strutilg=\ht\xepersian@wbox \advance\xepersian@strutilg by\dp\xepersian@wbox 
+ \ifdim\xepersian@strutilg>\baselineskip
+  \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
+  \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
+  \linespread{\strip@pt\dimexpr 1pt * \xepersian@strutilg / \baselineskip\relax}
+  \selectfont
+ \fi
+}
 
 \newcommand\twocolumnstableofcontents{%
 \if@bidi@csundef{multi@column@out}{%
