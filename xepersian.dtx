@@ -2359,7 +2359,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9385}
+%% \CheckSum{9399}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5671,7 +5671,8 @@ Persian typesetting in XeLaTeX]
        {\@cite@ofmt{\csname b@\@citeb\endcsname}}}}}{#1}}
        
 \renewcommand*{\bidi@font@@outputpage}{\if@RTLmain\setpersianfont\else\resetlatinfont\fi}
-       
+
+\newif\if@xepersian@@computeautoilg       
 \newcount\xepersian@tcl
 \newdimen\xepersian@ilg
 \newdimen\xepersian@strutilg
@@ -5691,18 +5692,6 @@ Persian typesetting in XeLaTeX]
 %  \selectfont
 % \fi
 }
-
-\bidi@patchcmd{\set@fontsize}{%
-\baselineskip\f@baselineskip\relax
-}{%
-\baselineskip\f@baselineskip\relax
-\xepersian@computeautoilg
- \ifdim\xepersian@strutilg>\baselineskip
-  \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
-  \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
-  \baselineskip\xepersian@strutilg
- \fi
-}{}{}
 
 \newcommand\twocolumnstableofcontents{%
 \if@bidi@csundef{multi@column@out}{%
@@ -6189,6 +6178,16 @@ number is 999,999,999.}%
  {#1}
 }
 
+
+\define@choicekey{xepersian.sty}{computeautoilg}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
+  \ifcase\xepersian@tempb\relax
+    \@xepersian@@computeautoilgtrue
+  \or
+    \@xepersian@@computeautoilgfalse
+  \fi}
+
+
+
 \ExecuteOptionsX{%
     documentdirection=righttoleft,
     tabledirection=righttoleft,
@@ -6203,6 +6202,20 @@ number is 999,999,999.}%
 \if@extrafootnotefeatures
   \input{extrafootnotefeatures-xetex-bidi.def}
   \input{extrafootnotefeatures-xepersian.def}
+\fi
+
+\if@xepersian@@computeautoilg
+\bidi@patchcmd{\set@fontsize}{%
+\baselineskip\f@baselineskip\relax
+}{%
+\baselineskip\f@baselineskip\relax
+\xepersian@computeautoilg
+ \ifdim\xepersian@strutilg>\baselineskip
+  \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
+  \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
+  \baselineskip\xepersian@strutilg
+ \fi
+}{}{}
 \fi
 
 \setlatintextfont[ExternalLocation,BoldFont={lmroman10-bold},BoldItalicFont={lmroman10-bolditalic},ItalicFont={lmroman10-italic},SmallCapsFont={lmromancaps10-regular},SlantedFont={lmromanslant10-regular},BoldSlantedFont={lmromanslant10-bold}]{lmroman10-regular}%
