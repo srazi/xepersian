@@ -2359,7 +2359,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9399}
+%% \CheckSum{9408}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4105,7 +4105,7 @@ by Vafa Khalighi.
 %    \begin{macrocode}
 \newif\if@Kashida@on
 \def\xepersian@kashida{\if@Kashida@on\xepersian@zwj\nobreak%
-    \leaders\hrule height \XeTeXglyphbounds2 \the\XeTeXcharglyph"0640  depth \XeTeXglyphbounds4 \the\XeTeXcharglyph"0640 \hskip0pt plus 0.5em \xepersian@zwj\fi}
+    \leaders\hrule height \XeTeXglyphbounds\tw@ \the\XeTeXcharglyph"0640  depth \XeTeXglyphbounds\f@ur \the\XeTeXcharglyph"0640 \hskip0pt plus 0.5em \xepersian@zwj\fi}
 
 \def\setclass#1#2{\def\theclass{#1}\def\charlist{#2}%
   \expandafter\dosetclass\charlist,\end}
@@ -5676,12 +5676,16 @@ Persian typesetting in XeLaTeX]
 \newcount\xepersian@tcl
 \newdimen\xepersian@ilg
 \newdimen\xepersian@strutilg
-\newbox\xepersian@wbox
+\chardef\f@ur=4
 \newcommand*{\xepersian@computeautoilg}{% compute the interline glue
  \xepersian@tcl=1536\xepersian@ilg\z@\xepersian@strutilg\z@
- \loop\setbox\xepersian@wbox=\hbox{\char\xepersian@tcl}
- \ifdim\ht\xepersian@wbox>\xepersian@ilg\xepersian@ilg=\ht\xepersian@wbox\fi
- \ifdim\dp\xepersian@wbox>\xepersian@strutilg\xepersian@strutilg=\dp\xepersian@wbox\fi
+ \loop
+ \ifdim\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl>\xepersian@ilg
+   \xepersian@ilg=\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl
+ \fi
+ \ifdim\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl>\xepersian@strutilg
+   \xepersian@strutilg=\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl
+ \fi
  \advance\xepersian@tcl\@ne
  \ifnum\xepersian@tcl<1792\repeat
  \advance\xepersian@strutilg\xepersian@ilg
