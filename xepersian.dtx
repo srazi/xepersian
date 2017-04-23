@@ -5672,48 +5672,48 @@ Persian typesetting in XeLaTeX]
        
 \renewcommand*{\bidi@font@@outputpage}{\if@RTLmain\setpersianfont\else\resetlatinfont\fi}
 
-%\newif\if@xepersian@@computeautoilg       
-%\newcount\xepersian@tcl
-%\newdimen\xepersian@ilg
-%\newdimen\xepersian@strutilg
-%\chardef\f@ur=4
-%\newcommand*{\xepersian@computeautoilg}{% compute the interline glue
-% \xepersian@tcl=1536\xepersian@ilg\z@\xepersian@strutilg\z@
-% \loop
-% \iffontchar\font\xepersian@tcl
-% \ifdim\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl>\z@
-% \ifdim\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl>\xepersian@ilg
-%   \xepersian@ilg=\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl
+\newif\if@xepersian@@computeautoilg       
+\newcount\xepersian@tcl
+\newdimen\xepersian@ilg
+\newdimen\xepersian@strutilg
+\chardef\f@ur=4
+\newcommand*{\xepersian@computeautoilg}{% compute the interline glue
+ \xepersian@tcl=1536\xepersian@ilg\z@\xepersian@strutilg\z@
+ \loop
+ \iffontchar\font\xepersian@tcl
+ \ifdim\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl>\z@
+ \ifdim\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl>\xepersian@ilg
+   \xepersian@ilg=\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl
+ \fi
+ \else
+ \ifdim\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl<\z@
+  \ifdim-\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl>\xepersian@ilg
+   \xepersian@ilg=-\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl
+ \fi
+ \fi
+ \fi
+ \ifdim\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl>\z@
+ \ifdim\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl>\xepersian@strutilg
+   \xepersian@strutilg=\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl
+ \fi
+ \else
+ \ifdim\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl<\z@
+  \ifdim-\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl>\xepersian@strutilg
+   \xepersian@strutilg=-\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl
+ \fi
+ \fi
+ \fi
+ \fi
+ \advance\xepersian@tcl\@ne
+ \ifnum\xepersian@tcl<1792\repeat
+ \advance\xepersian@strutilg\xepersian@ilg
+% \ifdim\xepersian@strutilg>\baselineskip
+%  \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
+%  \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
+%  \linespread{\strip@pt\dimexpr 1pt * \xepersian@strutilg / \baselineskip\relax}
+%  \selectfont
 % \fi
-% \else
-% \ifdim\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl<\z@
-%  \ifdim-\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl>\xepersian@ilg
-%   \xepersian@ilg=-\XeTeXglyphbounds\tw@ \the\XeTeXcharglyph\xepersian@tcl
-% \fi
-% \fi
-% \fi
-% \ifdim\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl>\z@
-% \ifdim\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl>\xepersian@strutilg
-%   \xepersian@strutilg=\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl
-% \fi
-% \else
-% \ifdim\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl<\z@
-%  \ifdim-\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl>\xepersian@strutilg
-%   \xepersian@strutilg=-\XeTeXglyphbounds\f@ur \the\XeTeXcharglyph\xepersian@tcl
-% \fi
-% \fi
-% \fi
-% \fi
-% \advance\xepersian@tcl\@ne
-% \ifnum\xepersian@tcl<1792\repeat
-% \advance\xepersian@strutilg\xepersian@ilg
-%% \ifdim\xepersian@strutilg>\baselineskip
-%%  \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
-%%  \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
-%%  \linespread{\strip@pt\dimexpr 1pt * \xepersian@strutilg / \baselineskip\relax}
-%%  \selectfont
-%% \fi
-%}
+}
 
 \newcommand\twocolumnstableofcontents{%
 \if@bidi@csundef{multi@column@out}{%
@@ -6201,12 +6201,12 @@ number is 999,999,999.}%
 }
 
 
-%\define@choicekey{xepersian.sty}{computeautoilg}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-%  \ifcase\xepersian@tempb\relax
-%    \@xepersian@@computeautoilgtrue
-%  \or
-%    \@xepersian@@computeautoilgfalse
-%  \fi}
+\define@choicekey{xepersian.sty}{computeautoilg}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
+  \ifcase\xepersian@tempb\relax
+    \@xepersian@@computeautoilgtrue
+  \or
+    \@xepersian@@computeautoilgfalse
+  \fi}
 
 
 
@@ -6226,19 +6226,19 @@ number is 999,999,999.}%
   \input{extrafootnotefeatures-xepersian.def}
 \fi
 
-%\if@xepersian@@computeautoilg
-%\bidi@patchcmd{\set@fontsize}{%
-%\baselineskip\f@baselineskip\relax
-%}{%
-%\baselineskip\f@baselineskip\relax
-%\xepersian@computeautoilg
-% \ifdim\xepersian@strutilg>\baselineskip
-%  \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
-%  \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
-%  \baselineskip\xepersian@strutilg
-% \fi
-%}{}{}
-%\fi
+\if@xepersian@@computeautoilg
+\bidi@patchcmd{\set@fontsize}{%
+\baselineskip\f@baselineskip\relax
+}{%
+\baselineskip\f@baselineskip\relax
+\xepersian@computeautoilg
+ \ifdim\xepersian@strutilg>\baselineskip
+  \PackageInfo{xepersian}{character with height+depth greater than current baselineskip found in font}
+  \PackageInfo{xepersian}{baselineskip changed to that height+depth!}
+  \baselineskip\xepersian@strutilg
+ \fi
+}{}{}
+\fi
 
 \setlatintextfont[ExternalLocation,BoldFont={lmroman10-bold},BoldItalicFont={lmroman10-bolditalic},ItalicFont={lmroman10-italic},SmallCapsFont={lmromancaps10-regular},SlantedFont={lmromanslant10-regular},BoldSlantedFont={lmromanslant10-bold}]{lmroman10-regular}%
 \PersianAlphs
