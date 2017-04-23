@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v18.3
+v18.4
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -272,7 +272,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 18.3}}
+%\large Documentation for \textcolor{blue!65!black}{version 18.4}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}}
 %\setcounter{page}{0}
@@ -283,7 +283,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 18.3}}
+%Documentation for \textcolor{blue!65!black}{version 18.4}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -338,7 +338,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v18.3, 2017/04/23
+%* v18.4, 2017/04/23
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2359,7 +2359,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9472}
+%% \CheckSum{9480}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5347,7 +5347,7 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v18.3}
+\def\xepersianversion{v18.4}
 \def\xepersiandate{2017/04/23}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
@@ -5632,12 +5632,16 @@ Persian typesetting in XeLaTeX]
 \@nonlatinfalse%
 \let\normalfont\latinfont%
 \let\reset@font\normalfont%
-\latinfont}
+\latinfont%
+\fontsize\f@size\f@baselineskip%
+\selectfont}
 \def\setpersianfont{%
 \@nonlatintrue%
 \let\normalfont\persianfont%
 \let\reset@font\normalfont%
-\persianfont}
+\persianfont%
+\fontsize\f@size\f@baselineskip%
+\selectfont}
 \bidi@newrobustcmd*{\lr}[1]{\LRE{\resetlatinfont#1}}
 \bidi@newrobustcmd*{\rl}[1]{\RLE{\setpersianfont#1}}
 \def\latin{\LTR\LatinAlphs\@RTL@footnotefalse\resetlatinfont}
