@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v18.5
+v18.6
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -28,7 +28,7 @@ a minimal working example showing the issue, and always choose the appropriate
 label for your query (i.e. if you are reporting any bugs, choose `Bug' label). 
 
 
-Current version release date: 2017/04/26
+Current version release date: 2017/05/06
 ______________
 Vafa Khalighi
 persian-tex@tug.org
@@ -273,7 +273,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 18.5}}
+%\large Documentation for \textcolor{blue!65!black}{version 18.6}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}\\
 %  \url{https://www.instagram.com/persiantex}}
@@ -285,7 +285,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 18.5}}
+%Documentation for \textcolor{blue!65!black}{version 18.6}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -340,7 +340,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v18.5, 2017/04/26
+%* v18.6, 2017/05/06
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2363,7 +2363,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9487}
+%% \CheckSum{9513}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5351,8 +5351,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v18.5}
-\def\xepersiandate{2017/04/26}
+\def\xepersianversion{v18.6}
+\def\xepersiandate{2017/05/06}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
 \RequirePackage{fontspec}
@@ -6218,6 +6218,19 @@ number is 999,999,999.}%
     \@xepersian@@computeautoilgfalse
   \fi}
 
+\define@choicekey{xepersian.sty}{DetectColumn}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
+  \ifcase\xepersian@tempb\relax
+  \def\bidi@firstcolumn@status@write{%
+         \protected@write\@auxout{}%
+              {\string\bidi@column@status
+              {1}}}%
+  \def\bidi@lastcolumn@status@write{%
+         \protected@write\@auxout{}%
+              {\string\bidi@column@status{2}}}%
+  \or
+    \let\bidi@firstcolumn@status@write\relax
+    \let\bidi@lastcolumn@status@write\relax
+  \fi}
 
 
 \ExecuteOptionsX{%
@@ -6226,7 +6239,8 @@ number is 999,999,999.}%
     script=nonlatin,
     footnotedirection=righttoleft,
     footnoterule=automatic,
-    abjadvariant=two
+    abjadvariant=two,
+    DetectColumn=off
 }
 
 \ProcessOptionsX
