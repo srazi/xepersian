@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v18.6
+v18.7
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -28,7 +28,7 @@ a minimal working example showing the issue, and always choose the appropriate
 label for your query (i.e. if you are reporting any bugs, choose `Bug' label). 
 
 
-Current version release date: 2017/05/06
+Current version release date: 2017/06/09
 ______________
 Vafa Khalighi
 persian-tex@tug.org
@@ -273,7 +273,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 18.6}}
+%\large Documentation for \textcolor{blue!65!black}{version 18.7}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}\\
 %  \url{https://www.instagram.com/vafa.khalighi}}
@@ -285,7 +285,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 18.6}}
+%Documentation for \textcolor{blue!65!black}{version 18.7}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -340,7 +340,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v18.6, 2017/05/06
+%* v18.7, 2017/06/09
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2364,7 +2364,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9513}
+%% \CheckSum{9243}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4001,95 +4001,13 @@ by Vafa Khalighi.
 %\fi
 % \subsection{\textsf{imsproc-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{imsproc-xepersian.def}[2015/12/07 v0.4 implementation of imsproc class for xepersian package]
-\newenvironment{thebibliography}[1]{%
-  \@bibtitlestyle
-  \normalfont\bibliofont\labelsep .5em\relax
-  \renewcommand\theenumiv{\arabic{enumiv}}\let\p@enumiv\@empty
-  \if@RTL\if@LTRbibitems\@RTLfalse\else\fi\else\if@RTLbibitems\@RTLtrue\else\fi\fi
-  \list{\@biblabel{\theenumiv}}{\settowidth\labelwidth{\@biblabel{#1}}%
-    \leftmargin\labelwidth \advance\leftmargin\labelsep
-    \usecounter{enumiv}}%
-  \sloppy \clubpenalty\@M \widowpenalty\clubpenalty
-  \sfcode`\.=\@m
-}{%
-  \def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
-  \endlist
-}
-\def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
-  \columnseprule\z@ \columnsep 35\p@
-  \@indextitlestyle
-  \thispagestyle{plain}%
-  \let\item\@idxitem
-  \parindent\z@  \parskip\z@\@plus.3\p@\relax
-  \if@RTL\raggedleft\else\raggedright\fi
-  \hyphenpenalty\@M
-  \footnotesize}
-\def\@idxitem{\par\hangindent \if@RTL-\fi2em}
-\def\subitem{\par\hangindent \if@RTL-\fi2em\hspace*{1em}}
-\def\subsubitem{\par\hangindent \if@RTL-\fi3em\hspace*{2em}}
+\ProvidesFile{imsproc-xepersian.def}[2017/06/09 v0.5 xepersian adaptations for imsproc class for XeTeX engine]
+
 \renewcommand \thepart {\@tartibi\c@part}
 \def\appendix{\par\c@section\z@ \c@subsection\z@
    \let\sectionname\appendixname
    \def\thesection{\@harfi\c@section}}
-\def\right@footnoterule{%
-  \kern-.4\p@
-  \hbox to \columnwidth{\hskip \dimexpr\columnwidth-5pc\relax \hrulefill }
-  \kern11\p@\kern-\footnotesep} 
-\def\left@footnoterule{\kern-.4\p@
-        \hrule\@width 5pc\kern11\p@\kern-\footnotesep}
-\def\@makefnmark{%
-  \leavevmode
-  \raise.9ex\hbox{\fontsize\sf@size\z@\normalfont\@thefnmark}%
-}
 
- 
-    
-\def\part{\@startsection{part}{0}%
-  \z@{\linespacing\@plus\linespacing}{.5\linespacing}%
-  {\normalfont\bfseries\if@RTL\raggedleft\else\raggedright\fi}}
-\def\@tocline#1#2#3#4#5#6#7{\relax
-  \ifnum #1>\c@tocdepth % then omit
-  \else
-    \par \addpenalty\@secpenalty\addvspace{#2}%
-    \begingroup \hyphenpenalty\@M
-    \@ifempty{#4}{%
-      \@tempdima\csname r@tocindent\number#1\endcsname\relax
-    }{%
-      \@tempdima#4\relax
-    }%
-    \parindent\z@ \if@RTL\rightskip\else\leftskip\fi#3\relax \advance\if@RTL\rightskip\else\leftskip\fi\@tempdima\relax
-    \if@RTL\leftskip\else\rightskip\fi\@pnumwidth plus4em \parfillskip-\@pnumwidth
-    #5\leavevmode\hskip-\@tempdima #6\nobreak\relax
-    \hfil\hbox to\@pnumwidth{\@tocpagenum{#7}}\par
-    \nobreak
-    \endgroup
-  \fi}
-\renewcommand\thesubsection    {\thesection\@SepMark\arabic{subsection}}
-\renewcommand\thesubsubsection {\thesubsection \@SepMark\arabic{subsubsection}}
-\renewcommand\theparagraph     {\thesubsubsection\@SepMark\arabic{paragraph}}
-\renewcommand\thesubparagraph  {\theparagraph\@SepMark\arabic{subparagraph}}
-\def\maketitle{\par
-  \@topnum\z@ % this prevents figures from falling at the top of page 1
-  \@setcopyright
-  \thispagestyle{firstpage}% this sets first page specifications
-  \uppercasenonmath\shorttitle
-  \ifx\@empty\shortauthors \let\shortauthors\shorttitle
-  \else \andify\shortauthors
-  \fi
-  \@maketitle@hook
-  \begingroup
-  \@maketitle
-  \toks@\@xp{\shortauthors}\@temptokena\@xp{\shorttitle}%
-  \toks4{\def\\{ \ignorespaces}}% defend against questionable usage
-  \edef\@tempa{%
-    \@nx\markboth{\the\toks4
-      \@nx\MakeUppercase{\the\toks@}}{\the\@temptokena}}%
-  \@tempa
-  \endgroup
-  \c@footnote\z@
-  \@cleartopmattertags
-}
 %    \end{macrocode}
 % \iffalse
 %</imsproc-xepersian.def>
@@ -5352,8 +5270,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v18.6}
-\def\xepersiandate{2017/05/06}
+\def\xepersianversion{v18.7}
+\def\xepersiandate{2017/06/09}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
 \RequirePackage{fontspec}
@@ -6029,6 +5947,10 @@ number is 999,999,999.}%
    \let\@alph\@latinalph%
    \let\@Alph\@latinAlph%
 }
+\renewcommand*{\bidi@@thebibliography@font@hook}{%
+\if@LTRbibitems 
+  \resetlatinfont
+\fi}
 \bidi@AfterEndPreamble{%
 \if@bidi@csundef{persianfont}{%
 \PackageError{xepersian}{You have not specified any font\MessageBreak
