@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v18.8
+v18.9
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -28,7 +28,7 @@ a minimal working example showing the issue, and always choose the appropriate
 label for your query (i.e. if you are reporting any bugs, choose `Bug' label). 
 
 
-Current version release date: 2017/06/17
+Current version release date: 2017/08/09
 ______________
 Vafa Khalighi
 persian-tex@tug.org
@@ -272,7 +272,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 18.8}}
+%\large Documentation for \textcolor{blue!65!black}{version 18.9}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}}
 %\setcounter{page}{0}
@@ -283,7 +283,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 18.8}}
+%Documentation for \textcolor{blue!65!black}{version 18.9}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -338,7 +338,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v18.8, 2017/06/17
+%* v18.9, 2017/08/09
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2360,7 +2360,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9243}
+%% \CheckSum{9242}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3898,13 +3898,13 @@ by Vafa Khalighi.
 %\fi
 % \subsection{\textsf{footnote-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{footnote-xepersian.def}[2017/02/04 v0.5 footnote macros for xepersian package]
+\ProvidesFile{footnote-xepersian.def}[2017/08/09 v0.6 footnote macros for xepersian package]
 
-\renewcommand*{\bidi@@footnotetext@font}{\if@RTL@footnote\reset@font\else\resetlatinfont\fi\footnotesize} 
+\renewcommand*{\bidi@@footnotetext@font}{\footnotesize\if@RTL@footnote\else\resetlatinfont\fi} 
 
-\renewcommand*{\bidi@@LTRfootnotetext@font}{\resetlatinfont\footnotesize} 
+\renewcommand*{\bidi@@LTRfootnotetext@font}{\footnotesize\resetlatinfont} 
 
-\renewcommand*{\bidi@@RTLfootnotetext@font}{\setpersianfont\footnotesize}  
+\renewcommand*{\bidi@@RTLfootnotetext@font}{\footnotesize\setpersianfont}  
     
 %    \end{macrocode}
 % \iffalse
@@ -5266,8 +5266,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v18.8}
-\def\xepersiandate{2017/06/17}
+\def\xepersianversion{v18.9}
+\def\xepersiandate{2017/08/09}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
 \RequirePackage{fontspec}
