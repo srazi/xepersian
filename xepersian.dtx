@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v19.1
+v19.2
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -28,7 +28,7 @@ a minimal working example showing the issue, and always choose the appropriate
 label for your query (i.e. if you are reporting any bugs, choose `Bug' label). 
 
 
-Current version release date: 2017/08/27
+Current version release date: 2017/09/02
 ______________
 Vafa Khalighi
 persian-tex@tug.org
@@ -272,7 +272,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 19.1}}
+%\large Documentation for \textcolor{blue!65!black}{version 19.2}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}}
 %\setcounter{page}{0}
@@ -283,7 +283,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 19.1}}
+%Documentation for \textcolor{blue!65!black}{version 19.2}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -338,7 +338,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v19.1, 2017/08/27
+%* v19.2, 2017/09/02
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2360,7 +2360,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9286}
+%% \CheckSum{9382}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5266,8 +5266,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v19.1}
-\def\xepersiandate{2017/08/27}
+\def\xepersianversion{v19.2}
+\def\xepersiandate{2017/09/02}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
 \RequirePackage{fontspec}
@@ -6040,6 +6040,22 @@ number is 999,999,999.}%
     \DefaultMathsDigits
   \or
     \PersianMathsDigits
+  \fi}
+\define@choicekey{xepersian.sty}{inlinemathdigits}[\xepersian@tempa\xepersian@tempb]{automatic,default,persian}{%
+  \ifcase\xepersian@tempb\relax
+    \AutoInlineMathsDigits
+  \or
+    \DefaultInlineMathsDigits
+  \or
+    \PersianInlineMathsDigits
+  \fi}
+\define@choicekey{xepersian.sty}{displaymathdigits}[\xepersian@tempa\xepersian@tempb]{automatic,default,persian}{%
+  \ifcase\xepersian@tempb\relax
+    \AutoDisplayMathsDigits
+  \or
+    \DefaultDisplayMathsDigits
+  \or
+    \PersianDisplayMathsDigits
   \fi}
 \define@choicekey{xepersian.sty}{RTLdocument}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
   \ifcase\xepersian@tempb\relax
@@ -7114,7 +7130,7 @@ indexblock environment may only appear inside frontpage environment.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{xepersian-mathsdigitspec}
-  [2017/08/27 v1.1.3 Unicode Persian maths digits in XeLaTeX]
+  [2017/09/02 v1.1.4 Unicode Persian maths digits in XeLaTeX]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -7334,18 +7350,44 @@ indexblock environment may only appear inside frontpage environment.
  \fi}
 \mathcode`.="8000\relax
 \def\ZifferLeer{\ifx\decimalseparator\undefined .\else \decimalseparator\fi}
-\def\DefaultMathsDigits{\def\SetMathsDigits{}}
-\def\PersianMathsDigits{\def\SetMathsDigits{%
+\def\DefaultInlineMathsDigits{\def\SetInlineMathsDigits{}}
+\def\DefaultDisplayMathsDigits{\def\SetDisplayMathsDigits{}}
+\def\DefaultMathsDigits{%
+  \DefaultInlineMathsDigits%
+  \DefaultDisplayMathsDigits%
+}
+\def\PersianInlineMathsDigits{\def\SetInlineMathsDigits{%
 \ifx\persianmathsdigits\undefined\else\persianmathsdigits\fi%
 \ifx\persianmathsfdigits\undefined\else\persianmathsfdigits\fi%
 \ifx\persianmathttdigits\undefined\else\persianmathttdigits\fi}}
-\def\AutoMathsDigits{\def\SetMathsDigits{%
+\def\PersianDisplayMathsDigits{\def\SetDisplayMathsDigits{%
+\ifx\persianmathsdigits\undefined\else\persianmathsdigits\fi%
+\ifx\persianmathsfdigits\undefined\else\persianmathsfdigits\fi%
+\ifx\persianmathttdigits\undefined\else\persianmathttdigits\fi}}
+\def\PersianMathsDigits{%
+  \PersianInlineMathsDigits%
+  \PersianDisplayMathsDigits%
+}
+\def\AutoInlineMathsDigits{\def\SetInlineMathsDigits{%
 \ifx\persianmathsdigits\undefined\else\if@nonlatin\persianmathsdigits\fi\fi%
 \ifx\persianmathsfdigits\undefined\else\if@nonlatin\persianmathsfdigits\fi\fi%
 \ifx\persianmathttdigits\undefined\else\if@nonlatin\persianmathttdigits\fi\fi}}
+\def\AutoDisplayMathsDigits{\def\SetDisplayMathsDigits{%
+\ifx\persianmathsdigits\undefined\else\if@nonlatin\persianmathsdigits\fi\fi%
+\ifx\persianmathsfdigits\undefined\else\if@nonlatin\persianmathsfdigits\fi\fi%
+\ifx\persianmathttdigits\undefined\else\if@nonlatin\persianmathttdigits\fi\fi}}
+\def\AutoMathsDigits{%
+  \AutoInlineMathsDigits%
+  \AutoDisplayMathsDigits%
+}
 \AutoMathsDigits
-\everymath\expandafter{\the\everymath\SetMathsDigits}
-\g@addto@macro\document{\everydisplay\expandafter{\the\everydisplay\SetMathsDigits}}
+\everymath\expandafter{\the\everymath\SetInlineMathsDigits%
+  \let\SetDisplayMathsDigits\relax%
+}
+\g@addto@macro\document{\everydisplay\expandafter{%
+  \the\everydisplay\SetDisplayMathsDigits%
+  \let\SetInlineMathsDigits\relax%
+}}
 %    \end{macrocode}
 % \iffalse
 %</xepersian-mathsdigitspec.sty>
