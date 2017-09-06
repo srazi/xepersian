@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v19.2
+v19.3
 
 XePersian is a package written for XeLaTeX that allows users to typeset
 Persian easily. 
@@ -28,7 +28,7 @@ a minimal working example showing the issue, and always choose the appropriate
 label for your query (i.e. if you are reporting any bugs, choose `Bug' label). 
 
 
-Current version release date: 2017/09/02
+Current version release date: 2017/09/06
 ______________
 Vafa Khalighi
 persian-tex@tug.org
@@ -87,6 +87,7 @@ by Vafa Khalighi.
 \generate{\file{color-localise-xepersian.def}{\from{\jobname.dtx}{table,color-localise-xepersian.def}}}
 \generate{\file{xepersian-localise-commands-xepersian.def}{\from{\jobname.dtx}{table,xepersian-localise-commands-xepersian.def}}}
 \generate{\file{enumerate-xepersian.def}{\from{\jobname.dtx}{table,enumerate-xepersian.def}}}
+\generate{\file{enumitem-xepersian.def}{\from{\jobname.dtx}{table,enumitem-xepersian.def}}}
 \generate{\file{latex-localise-environments-xepersian.def}{\from{\jobname.dtx}{table,latex-localise-environments-xepersian.def}}}
 \generate{\file{xepersian-localise-environments-xepersian.def}{\from{\jobname.dtx}{table,xepersian-localise-environments-xepersian.def}}}
 \generate{\file{extarticle-xepersian.def}{\from{\jobname.dtx}{table,extarticle-xepersian.def}}}
@@ -272,7 +273,7 @@ by Vafa Khalighi.
 %\changes{v13.1}{2013/09/23}{Added implementation of the package.}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Documentation for \textcolor{blue!65!black}{version 19.2}}
+%\large Documentation for \textcolor{blue!65!black}{version 19.3}}
 % \author{Vafa Khalighi\\
 %  \url{persian-tex@tug.org}}
 %\setcounter{page}{0}
@@ -283,7 +284,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Documentation for \textcolor{blue!65!black}{version 19.2}}
+%Documentation for \textcolor{blue!65!black}{version 19.3}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -338,7 +339,7 @@ by Vafa Khalighi.
 %* 
 %* Copyright (c) 2008--2017 Vafa Khalighi
 %* 
-%* v19.2, 2017/09/02
+%* v19.3, 2017/09/06
 %* 
 %* License: LaTeX Project Public License, version
 %* 1.3c or higher (your choice)
@@ -2360,7 +2361,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{9382}
+%% \CheckSum{9416}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3733,6 +3734,24 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</enumerate-xepersian.def>
+%<*enumitem-xepersian.def>
+%\fi
+% \subsection{\textsf{enumitem-xepersian.def}}
+%    \begin{macrocode}
+\ProvidesFile{enumitem-xepersian.def}[2017/09/06 v0.1 adaptations for enumitem package]
+\AddEnumerateCounter*\tartibi\@tartibi{999999999}
+\AddEnumerateCounter*\adadi\@adadi{999999999}
+\AddEnumerateCounter\harfi\@harfi{گ}
+\AddEnumerateCounter\Abjad\@Abjad{ک}
+\AddEnumerateCounter\abjad\@abjad{غثکب}
+\SetEnumerateShortLabel{اول}{\tartibi*}
+\SetEnumerateShortLabel{یک}{\adadi*}
+\SetEnumerateShortLabel{آ}{\harfi*}
+\SetEnumerateShortLabel{ب}{\Abjad*}
+\SetEnumerateShortLabel{ج}{\abjad*}
+%    \end{macrocode}
+% \iffalse
+%</enumitem-xepersian.def>
 %<*latex-localise-environments-xepersian.def>
 %\fi
 % \subsection{\textsf{latex-localise-environments-xepersian.def}}
@@ -4074,11 +4093,12 @@ by Vafa Khalighi.
 %\fi
 % \subsection{\textsf{loadingorder-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{loadingorder-xepersian.def}[2012/01/01 v0.3 making sure that xepersian is the last package loaded]
+\ProvidesFile{loadingorder-xepersian.def}[2017/09/06 v0.4 making sure that xepersian is the last package loaded]
 \bidi@isloaded{algorithmic}
 \bidi@isloaded{algorithm}
 \bidi@isloaded{backref}
 \bidi@isloaded{enumerate}
+\bidi@isloaded{enumitem}
 \bidi@isloaded{tocloft}
 \bidi@isloaded{url}
 \AtBeginDocument{
@@ -4093,6 +4113,9 @@ by Vafa Khalighi.
   \fi%
   \if@bidi@enumerateloaded@\else
     \bidi@isloaded[\PackageError{xepersian}{Oops! you have loaded package enumerate after xepersian package. Please load package enumerate before xepersian package, and then try to run xelatex on your document again}{}]{enumerate}
+  \fi%
+  \if@bidi@enumitemloaded@\else
+    \bidi@isloaded[\PackageError{xepersian}{Oops! you have loaded package enumitem after xepersian package. Please load package enumitem before xepersian package, and then try to run xelatex on your document again}{}]{enumitem}
   \fi%
   \if@bidi@tocloftloaded@\else
     \bidi@isloaded[\PackageError{xepersian}{Oops! you have loaded package tocloft after xepersian package. Please load package tocloft before xepersian package, and then try to run xelatex on your document again}{}]{tocloft}
@@ -5266,8 +5289,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \subsection{\textsf{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersianversion{v19.2}
-\def\xepersiandate{2017/09/02}
+\def\xepersianversion{v19.3}
+\def\xepersiandate{2017/09/06}
 \ProvidesPackage{xepersian}[\xepersiandate\space \xepersianversion\space 
 Persian typesetting in XeLaTeX]
 \RequirePackage{fontspec}
@@ -6002,6 +6025,7 @@ number is 999,999,999.}%
 \@ifpackageloaded{bidituftesidenote}{\input{bidituftesidenote-xepersian.def}}{}
 \@ifpackageloaded{breqn}{\input{breqn-xepersian.def}}{}
 \@ifpackageloaded{enumerate}{\input{enumerate-xepersian.def}}{}
+\@ifpackageloaded{enumitem}{\input{enumitem-xepersian.def}}{}
 \@ifpackageloaded{framed}{\input{framed-xepersian.def}}{}
 \@ifpackageloaded{glossaries}{\input{glossaries-xepersian.def}}{}
 \@ifpackageloaded{hyperref}{\input{hyperref-xepersian.def}}{}
